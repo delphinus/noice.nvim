@@ -71,7 +71,9 @@ function Block:highlight(bufnr, ns_id, linenr_start)
   linenr_start = linenr_start or 1
   Highlight.update()
   for _, line in ipairs(self._lines) do
-    line:highlight(bufnr, ns_id, linenr_start)
+    pcall(function()
+      line:highlight(bufnr, ns_id, linenr_start)
+    end)
     linenr_start = linenr_start + 1
   end
 end
